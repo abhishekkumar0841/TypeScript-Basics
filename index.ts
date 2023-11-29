@@ -313,11 +313,42 @@ class Person3 {
 const newPerson3 = new Person3("abc@xyz.com", "Abhishek");
 
 //protected key word in typescript
-class subClassOfPerson extends Person3{
-  isFamily : boolean = true
-  changeCourseCount(){
-    this._courseCount = 3
+class subClassOfPerson extends Person3 {
+  isFamily: boolean = true;
+  changeCourseCount() {
+    this._courseCount = 3;
   }
+}
+
+//***Why INTERFACE is more important in typescript***** */--> Because if provides a set of protocols to work
+interface TakePhoto {
+  cameraMode: string;
+  filter: string;
+  burstMode: number;
+}
+
+//now here we properly follow the protocol to take the photo
+class Instagram implements TakePhoto {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burstMode: number
+  ) {}
+}
+
+interface Story {
+  createStory(): void;
+}
+
+class YouTube implements TakePhoto, Story {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burstMode: number,
+    //here we can add more property and not less than the TakePhoto interface
+    public shorts: string
+  ) {}
+  createStory(): void {}
 }
 
 export {};
