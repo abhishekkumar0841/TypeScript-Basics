@@ -270,17 +270,43 @@ class Person {
 
 const newPerson = new Person("Abhishek", 33, "Patna");
 
-class Person2{
-  constructor(public name: string, public age: number, private mobNum: string){
-    this.name = name
-    this.age = age
-    this.mobNum = mobNum
+//public , private
+class Person2 {
+  constructor(public name: string, public age: number, private mobNum: string) {
+    this.name = name;
+    this.age = age;
+    this.mobNum = mobNum;
   }
 }
 
-const newPerson2 = new Person2("Shrenika", 22, "1234687897")
-newPerson2.name = "Shre"
+const newPerson2 = new Person2("Shrenika", 22, "1234687897");
+newPerson2.name = "Shre";
 
+//getter and setter in TS
+class Person3 {
+  private _courseCount = 1;
 
+  readonly city: string = "Indore";
+  constructor(public email: string, public name: string) {}
+  //getter method
+  get getAppleEmail(): string {
+    return `apple${this.email}`;
+  }
+
+  //we can able to access the private property of class using get (getter)
+  get courseCount(): number {
+    return this._courseCount;
+  }
+
+  //setter not accept return type
+  set courseCount(courseNum) {
+    if (courseNum <= 1) {
+      throw new Error("course should be more than 1");
+    }
+    this._courseCount = courseNum;
+  }
+}
+
+const newPerson3 = new Person3("abc@xyz.com", "Abhishek");
 
 export {};
