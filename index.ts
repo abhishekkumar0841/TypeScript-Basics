@@ -284,7 +284,10 @@ newPerson2.name = "Shre";
 
 //getter and setter in TS
 class Person3 {
-  private _courseCount = 1;
+  // private _courseCount = 1;
+
+  //protected keyword makes the property of the class is accessible withing the class and the sub(inheritance) class of that class
+  protected _courseCount = 1;
 
   readonly city: string = "Indore";
   constructor(public email: string, public name: string) {}
@@ -308,5 +311,13 @@ class Person3 {
 }
 
 const newPerson3 = new Person3("abc@xyz.com", "Abhishek");
+
+//protected key word in typescript
+class subClassOfPerson extends Person3{
+  isFamily : boolean = true
+  changeCourseCount(){
+    this._courseCount = 3
+  }
+}
 
 export {};
