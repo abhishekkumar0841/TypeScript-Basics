@@ -378,4 +378,34 @@ class Instagram2 extends TakePhoto2 {
 const hc = new Instagram2("take photo", "take photo 2", 5);
 hc.getReel()
 
+//********GENERICS IN TYPESCRIPT************ */
+const score2: Array<number> = []
+const names: Array<string> = []
+
+function identityOne(val: boolean | number) : boolean | number {
+  return val
+}
+
+function identityTwo(val: any ) : any{
+  return val
+}
+
+function identityThree<Type>(val: Type) : Type{
+  return val
+}
+//when call identityThree with any data type,, this function accepts that and also return same datatype by default
+identityThree('myVal')
+
+//short way to write generics,, work same as identityThree
+function identityFour<T>(val: T): T{
+  return val
+}
+
+interface Bottle{
+  brand: string,
+  type: number 
+}
+
+identityFour<Bottle>({brand: 'coca', type: 30})
+
 export {};
