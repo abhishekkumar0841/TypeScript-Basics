@@ -351,4 +351,31 @@ class YouTube implements TakePhoto, Story {
   createStory(): void {}
 }
 
+//*******ABSTRACT CLASS IN TYPESCRIPT******** */
+//when we make abstract class then no new object or new instance can created from this abstracted class
+//we can only create new object or new instance from abstract class for that class which inheriting that abstract class
+abstract class TakePhoto2 {
+  constructor(public cameraMode: string, public filter: string) {}
+  abstract getSepia(): void;
+  getReel(): number{
+    return 15
+  }
+}
+
+class Instagram2 extends TakePhoto2 {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burst: number
+  ) {
+    super(cameraMode, filter);
+  }
+  getSepia(): void {
+    console.log('sepia');
+  }
+}
+
+const hc = new Instagram2("take photo", "take photo 2", 5);
+hc.getReel()
+
 export {};
