@@ -408,4 +408,17 @@ interface Bottle{
 
 identityFour<Bottle>({brand: 'coca', type: 30})
 
+//********GENERICS IN ARRAY AND ARROW FUNCTION********* */
+function getSearchProducts<T>(products: T[]): T{
+  //some complex operations
+  const myIndex = 3;
+  return products[myIndex]
+}
+
+const getSearchProductsArrowFunc = <T>(products: T[]) : T => {
+  //some complex operations
+  const myIndex = 4;
+  return products[myIndex]
+}
+
 export {};
