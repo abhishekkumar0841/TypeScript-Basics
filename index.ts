@@ -357,8 +357,8 @@ class YouTube implements TakePhoto, Story {
 abstract class TakePhoto2 {
   constructor(public cameraMode: string, public filter: string) {}
   abstract getSepia(): void;
-  getReel(): number{
-    return 15
+  getReel(): number {
+    return 15;
   }
 }
 
@@ -371,88 +371,121 @@ class Instagram2 extends TakePhoto2 {
     super(cameraMode, filter);
   }
   getSepia(): void {
-    console.log('sepia');
+    console.log("sepia");
   }
 }
 
 const hc = new Instagram2("take photo", "take photo 2", 5);
-hc.getReel()
+hc.getReel();
 
 //********GENERICS IN TYPESCRIPT************ */
-const score2: Array<number> = []
-const names: Array<string> = []
+const score2: Array<number> = [];
+const names: Array<string> = [];
 
-function identityOne(val: boolean | number) : boolean | number {
-  return val
+function identityOne(val: boolean | number): boolean | number {
+  return val;
 }
 
-function identityTwo(val: any ) : any{
-  return val
+function identityTwo(val: any): any {
+  return val;
 }
 
-function identityThree<Type>(val: Type) : Type{
-  return val
+function identityThree<Type>(val: Type): Type {
+  return val;
 }
 //when call identityThree with any data type,, this function accepts that and also return same datatype by default
-identityThree('myVal')
+identityThree("myVal");
 
 //short way to write generics,, work same as identityThree
-function identityFour<T>(val: T): T{
-  return val
+function identityFour<T>(val: T): T {
+  return val;
 }
 
-interface Bottle{
-  brand: string,
-  type: number 
+interface Bottle {
+  brand: string;
+  type: number;
 }
 
-identityFour<Bottle>({brand: 'coca', type: 30})
+identityFour<Bottle>({ brand: "coca", type: 30 });
 
 //********GENERICS IN ARRAY AND ARROW FUNCTION********* */
-function getSearchProducts<T>(products: T[]): T{
+function getSearchProducts<T>(products: T[]): T {
   //some complex operations
   const myIndex = 3;
-  return products[myIndex]
+  return products[myIndex];
 }
 
-const getSearchProductsArrowFunc = <T>(products: T[]) : T => {
+const getSearchProductsArrowFunc = <T>(products: T[]): T => {
   //some complex operations
   const myIndex = 4;
-  return products[myIndex]
-}
+  return products[myIndex];
+};
 
 //*********GENERICS IN CLASSES*********** */
-interface Database{
-  connection: string,
-  username: string,
-  password: string,
+interface Database {
+  connection: string;
+  username: string;
+  password: string;
 }
 
-function anotherFunction<T, U extends Database>(valOne: T, valTwo: U) : object{
+function anotherFunction<T, U extends Database>(valOne: T, valTwo: U): object {
   return {
     valOne,
-    valTwo
+    valTwo,
+  };
+}
+
+anotherFunction(3, { connection: "conn", username: "user", password: "p" });
+
+interface Quiz {
+  name: string;
+  type: string;
+}
+
+interface Course {
+  name: string;
+  author: string;
+  subject: string;
+}
+
+class Sellable<T> {
+  public cart: T[] = [];
+  addToCart(product: T) {
+    this.cart.push(product);
   }
 }
 
-anotherFunction(3, {connection: 'conn', username: 'user', password: 'p'})
-
-interface Quiz{
-  name: string,
-  type: string
+//********TYPE NARROWING IN TYPESCRIPT********** */
+function detectType(val: number | string) {
+  if (typeof val === "string") {
+    return val.toString();
+  }
+  return val + 3;
 }
 
-interface Course{
-  name: string,
-  author: string,
-  subject: string
+function provideId(id: string | null) {
+  if (!id) {
+    console.log("please provide id");
+    return;
+  }
+  id?.toLowerCase();
 }
 
-class Sellable<T>{
-  public cart: T[] = []
-  addToCart(product: T){
-    this.cart.push(product)
+function printAll(strs: string | string[] | null) {
+  // !!!!!!!!!!!!!!!!
+  //  DON'T DO THIS!
+  //   KEEP READING
+  // !!!!!!!!!!!!!!!!
+  if (strs) {
+    if (typeof strs === "object") {
+      for (const s of strs) {
+        console.log(s);
+      }
+    } else if (typeof strs === "string") {
+      console.log(strs);
+    }
   }
 }
+
 
 export {};
