@@ -487,5 +487,23 @@ function printAll(strs: string | string[] | null) {
   }
 }
 
+//*******THE IN OPERATOR IN NARROWING IN TYPESCRIPT********* */
+interface User6 {
+  name: string,
+  email: string,
+}
+
+interface Admin2 {
+  name: string,
+  email: string,
+  isAdmin: boolean,
+}
+
+function checkIsAdmin(account: User6 | Admin2): boolean | undefined {
+  if ("isAdmin" in account) {
+    return account.isAdmin;
+  }
+  return undefined
+}
 
 export {};
