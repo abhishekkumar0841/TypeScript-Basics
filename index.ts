@@ -489,21 +489,47 @@ function printAll(strs: string | string[] | null) {
 
 //*******THE IN OPERATOR IN NARROWING IN TYPESCRIPT********* */
 interface User6 {
-  name: string,
-  email: string,
+  name: string;
+  email: string;
 }
 
 interface Admin2 {
-  name: string,
-  email: string,
-  isAdmin: boolean,
+  name: string;
+  email: string;
+  isAdmin: boolean;
 }
 
 function checkIsAdmin(account: User6 | Admin2): boolean | undefined {
   if ("isAdmin" in account) {
     return account.isAdmin;
   }
-  return undefined
+  return undefined;
+}
+
+//********INSTANCEOF AND TYPE PREDICATES IN TYPESCRIPT********** */
+function logValue(x: Date | string) {
+  if (x instanceof Date) {
+    console.log(x.toUTCString());
+  } else {
+    console.log(x.toUpperCase());
+  }
+}
+
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+
+function isFish(pet: Fish | Bird) {
+  return (pet as Fish).swim !== undefined;
+}
+
+function getFood(pet: Fish | Bird) {
+  if (isFish(pet)) {
+    pet;
+    return "fish food";
+  } else {
+    pet;
+    return "bird food";
+  }
 }
 
 export {};
